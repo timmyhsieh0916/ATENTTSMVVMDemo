@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ATENVoice</string>
+
+    <!-- Splash -->
+    <string name="splash_memes">說話機器人─您的語音好幫手</string>
+    <string name="splash_downloading">更新資料下載中…</string>
+
+    <string name="exit">Exit</string>
+    <string name="back">←Back</string>
+    <string name="enterTitle">請輸入想要機器人說的話：</string>
+    <string name="enterHint">請輸入想要機器人說的話</string>
+</resources>
