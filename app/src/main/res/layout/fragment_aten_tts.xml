@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/enterTitle"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +22,7 @@
         android:id="@+id/edtContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="22sp"
         android:hint="@string/enterHint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +40,7 @@
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtContent"
-        app:layout_constraintWidth_percent="0.1">
+        app:layout_constraintWidth_percent="0.2">
 
         <ImageView
             android:layout_width="match_parent"
@@ -59,7 +60,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtContent"
-        app:layout_constraintWidth_percent="0.1">
+        app:layout_constraintWidth_percent="0.2">
 
         <ImageView
             android:layout_width="match_parent"
@@ -79,7 +80,7 @@
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtContent"
-        app:layout_constraintWidth_percent="0.1">
+        app:layout_constraintWidth_percent="0.2">
 
         <ImageView
             android:layout_width="match_parent"
@@ -87,4 +88,17 @@
             android:src="@drawable/outline_stop_circle_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/statusInit"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivPlay" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
