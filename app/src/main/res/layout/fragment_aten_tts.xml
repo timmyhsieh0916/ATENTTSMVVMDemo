@@ -22,8 +22,8 @@
         android:id="@+id/edtContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
         android:hint="@string/enterHint"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
@@ -89,6 +89,12 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <Spinner
+        android:id="@+id/spVoiceSelect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/ivPlay" />
+
     <TextView
         android:id="@+id/tvStatus"
         android:layout_width="wrap_content"
@@ -99,6 +105,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivPlay" />
+        app:layout_constraintTop_toBottomOf="@+id/spVoiceSelect" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

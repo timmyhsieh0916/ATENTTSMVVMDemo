@@ -3,6 +3,7 @@ package com.timmy.atenvoice.ui
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import com.timmy.atenvoice.R
 import com.timmy.atenvoice.databinding.FragmentAtenTtsBinding
@@ -37,7 +38,22 @@ class ATENTTSFragment : BaseFragment<FragmentAtenTtsBinding>() {
         ivPlay.setRippleBackgroundById(R.color.black)
         ivReplay.setRippleBackgroundById(R.color.black)
         ivStop.setRippleBackgroundById(R.color.black)
-//        }
+
+        initSpinnerView()
+    }
+
+    private fun initSpinnerView() = binding.run {
+        val adapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.language_options,
+            android.R.layout.simple_spinner_item
+        )
+
+        // 指定下拉選項顯示的佈局
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        // 將適配器應用到 Spinner
+        spVoiceSelect.adapter = adapter
     }
 
     private val mediaPlayer by lazy { MediaPlayer() }
@@ -64,8 +80,8 @@ class ATENTTSFragment : BaseFragment<FragmentAtenTtsBinding>() {
             showDialogLoading()
             dataViewModel.sendGetTTSResult(
                 getNowEdtString(),
-                "Bella_host",
-                "TL"
+                getVoiceOwner(),
+                getLanguage()
             )
         }
 
@@ -77,9 +93,34 @@ class ATENTTSFragment : BaseFragment<FragmentAtenTtsBinding>() {
 
         ivStop.click { // 停止播放音頻
             mediaPlayer.stop()
-
+            val selectedOption = spVoiceSelect.selectedItem.toString()
+            showToast(msgStr = "選擇的語音: $selectedOption")
         }
 
+    }
+
+    private fun getVoiceOwner(): String {
+        // 獲取 Spinner 中選擇的項目
+        val selectedOption = binding.spVoiceSelect.selectedItem.toString()
+
+        // 根據選擇的語音回傳對應的字串
+        return when {
+            selectedOption.contains("男聲") -> "Aaron_taigi" // 如果包含 "男聲"，返回 "Aaron_taigi"
+            selectedOption.contains("女聲") -> "Bella_host"  // 如果包含 "女聲"，返回 "Bella_host"
+            else -> "" // 如果不符合任何條件，返回空字串
+        }
+    }
+
+    private fun getLanguage(): String {
+        // 獲取 Spinner 中選擇的項目
+        val selectedOption = binding.spVoiceSelect.selectedItem.toString()
+
+        // 根據選擇的語音回傳對應的字串
+        return when {
+            selectedOption.contains("中文") -> "TW"
+            selectedOption.contains("台語") -> "TL"
+            else -> "" // 如果不符合任何條件，返回空字串
+        }
     }
 
     private fun initObservable() {

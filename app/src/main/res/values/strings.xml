@@ -10,4 +10,11 @@
     <string name="enterTitle">請輸入想要AI說的話：</string>
     <string name="enterHint">請輸入想要AI說的話</string>
     <string name="statusInit">當前狀態：等待送出要說話的內容</string>
+
+    <string-array name="language_options">
+        <item>中文男聲</item>
+        <item>台語男聲</item>
+        <item>中文女聲</item>
+        <item>台語女聲</item>
+    </string-array>
 </resources>
