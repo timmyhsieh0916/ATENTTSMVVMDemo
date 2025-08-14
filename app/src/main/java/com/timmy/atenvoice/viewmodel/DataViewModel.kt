@@ -2,7 +2,10 @@ package com.timmy.atenvoice.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.timmy.featureatenttslibs.repo.TTSRepository
+import com.timmy.featureatenttslibs.repo.model.TTSResponseBody
+import com.timmymike.logtool.loge
 import dagger.hilt.android.lifecycle.HiltViewModel
+import retrofit2.Call
 import javax.inject.Inject
 
 /**
@@ -11,13 +14,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DataViewModel @Inject constructor(
-    ttsRepo:TTSRepository
+    val ttsRepo: TTSRepository
 ) : ViewModel() {
 
-    fun getData() {
+    fun synthesize(text: String, voiceName: String, langType: String) {
+        val call = ttsRepo.synthesizeSpeech(text, voiceName, langType)
+        call.enqueue(object : retrofit2.Callback<TTSResponseBody> {
+            override fun onResponse(call: Call<TTSResponseBody>, response: retrofit2.Response<TTSResponseBody>) {
+                loge("成功回傳的TTS網址是=>${response.body()?.synthesisPath}")
 
-        // DataStoreRepository 非同步方案
+                // 處理回應
+            }
+
+            override fun onFailure(call: Call<TTSResponseBody>, t: Throwable) {
+                // 處理失敗
+            }
+        })
     }
-
 
 }

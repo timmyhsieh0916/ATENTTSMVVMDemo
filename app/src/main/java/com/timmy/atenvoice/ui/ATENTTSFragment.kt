@@ -2,7 +2,6 @@ package com.timmy.atenvoice.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.fragment.app.activityViewModels
 import com.timmy.atenvoice.R
 import com.timmy.atenvoice.databinding.FragmentAtenTtsBinding
@@ -10,11 +9,8 @@ import com.timmy.atenvoice.viewmodel.DataViewModel
 import com.timmy.atenvoice.viewmodel.PageViewModel
 import com.timmymike.componenttool.BaseFragment
 import com.timmymike.viewtool.click
-import com.timmymike.viewtool.getScreenHeightPixels
 import com.timmymike.viewtool.resetLayoutTextSize
-import com.timmymike.viewtool.setRippleBackground
 import com.timmymike.viewtool.setRippleBackgroundById
-import kotlin.getValue
 
 class ATENTTSFragment : BaseFragment<FragmentAtenTtsBinding>() {
 
@@ -35,13 +31,27 @@ class ATENTTSFragment : BaseFragment<FragmentAtenTtsBinding>() {
         ivPlay.setRippleBackgroundById(R.color.black)
         ivReplay.setRippleBackgroundById(R.color.black)
         ivStop.setRippleBackgroundById(R.color.black)
-//        llControlContent.forEach { // LinearLayout
-//            (it as? TextView)?.setSelectStyle()
 //        }
     }
 
     private fun initEvent() = binding.run {
-        ivPlay.click {  }
+        ivPlay.click { // call API 下載音頻，然後播放音頻
+            dataViewModel.synthesize(
+                edtContent.text.toString().takeIf { it.isNotEmpty() }?.toString() ?: edtContent.hint.toString(),
+                "Bella_host", "TL"
+            )
+        }
+
+        ivReplay.click { // 播放已下載好的音頻
+
+
+        }
+
+        ivStop.click { // 停止播放音頻
+
+
+        }
+
     }
 
 }

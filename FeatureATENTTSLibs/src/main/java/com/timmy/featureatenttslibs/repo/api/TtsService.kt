@@ -1,8 +1,13 @@
 package com.timmy.featureatenttslibs.repo.api
 
 import com.timmy.base.data.SampleDataFromAPI
+import com.timmy.featureatenttslibs.repo.SynthesisRequest
+import com.timmy.featureatenttslibs.repo.model.TTSResponseBody
+import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface TtsService {
@@ -18,4 +23,6 @@ interface TtsService {
 //        @Query("format") format: String = "JSON"
     ): SampleDataFromAPI
 
+    @POST("business/enterprise/api/v1/syntheses/api_token")
+    fun synthesizeSpeech(@Body request: SynthesisRequest): Call<TTSResponseBody> // YourResponseType 替換為你的回應數據類
 }

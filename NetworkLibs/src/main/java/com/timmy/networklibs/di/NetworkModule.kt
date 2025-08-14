@@ -1,12 +1,13 @@
 package com.timmy.networklibs.di
 
+import android.app.Application
+import android.content.Context
 import com.timmy.networklibs.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
-import okhttp3.Interceptor.*
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
@@ -15,11 +16,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
-import kotlin.apply
 
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
+
+    @Provides
+    fun provideContext(application: Application): Context {
+        return application.applicationContext
+    }
 
     @Singleton
     @Provides
@@ -60,7 +65,7 @@ class NetworkModule {
                     }
                 )
             })
-            .addInterceptor(AuthInterceptor { "8bd7fbfb7740489896d665c668751f62" })
+            .addInterceptor(AuthInterceptor { "aa1be94fb419426da458cf5e3e2013e9" })
             .build()
     }
 
@@ -68,7 +73,7 @@ class NetworkModule {
     @Named("TtsApi")
     fun provideRetrofit(@Named("TtsApi") okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://tts-api.example.com/")
+            .baseUrl("https://www.aivoice.com.tw/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -78,7 +83,7 @@ class NetworkModule {
         override fun intercept(chain: Interceptor.Chain): Response {
             val token = tokenProvider()
             val newRequest = chain.request().newBuilder()
-                .addHeader("Authorization", "Bearer $token")
+                .addHeader("Authorization", token)
                 .build()
             return chain.proceed(newRequest)
         }

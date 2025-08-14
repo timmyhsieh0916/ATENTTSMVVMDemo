@@ -19,7 +19,9 @@ class RobotMainActivity : BaseToolBarActivity<ActivityRobotMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setToolbarVisible(false)
+        setToolbarVisible(true)
+        setToolbarBackgroundById(R.color.black)
+        setToolbarHeight(70)
 
         initEvent()
 
